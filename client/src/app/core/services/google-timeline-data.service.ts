@@ -42,6 +42,9 @@ export class GoogleTimelineDataService {
         latitude: loc.latitudeE7 * Math.pow(10, -7),
         longitude: loc.longitudeE7 * Math.pow(10, -7),
         timestampMs: +loc.timestampMs,
+        activity:
+          (loc.activity && loc.activity[0].activity[0].type.toString()) ||
+          'unknown',
       })
     );
 
@@ -59,13 +62,20 @@ export class GoogleTimelineDataService {
       locations: [],
     };
 
+    console.log(data.locations.find((loc) => loc));
+
     const startDateMs = startDate.valueOf();
     const endDateMs = endDate.valueOf();
 
-    const filteredLocations = data.locations.filter(
-      (loc: ParsedGoogleTimelineDataLocation) =>
-        startDateMs < loc.timestampMs && loc.timestampMs < endDateMs
-    );
+    const filteredLocations = data.locations
+      .filter(
+        (loc: ParsedGoogleTimelineDataLocation) =>
+          startDateMs < loc.timestampMs && loc.timestampMs < endDateMs
+      )
+      .map((loc: ParsedGoogleTimelineDataLocation) => ({
+        ...loc,
+        timestampMs: moment(loc.timestampMs).format('DD/MM/YYYY HH:mm:ss'),
+      }));
     filteredData.locations = filteredLocations;
 
     return filteredData;

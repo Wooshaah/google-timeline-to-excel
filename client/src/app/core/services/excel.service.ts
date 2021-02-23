@@ -15,7 +15,7 @@ export class ExcelService {
     const wb = xlsx.utils.book_new();
 
     const ws = xlsx.utils.json_to_sheet(data.locations, {
-      header: ['timestampMs', 'latitude', 'longitude', 'accuracy'],
+      header: ['timestampMs', 'latitude', 'longitude', 'accuracy', 'activity'],
     });
 
     xlsx.utils.book_append_sheet(wb, ws, 'Google timeline data');

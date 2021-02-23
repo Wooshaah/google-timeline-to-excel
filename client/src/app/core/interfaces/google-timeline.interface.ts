@@ -21,10 +21,11 @@ export interface ParsedGoogleTimelineData {
 }
 
 export interface ParsedGoogleTimelineDataLocation {
-  timestampMs: number;
+  timestampMs: number | string;
   latitude: number;
   longitude: number;
   accuracy: number;
+  activity: string;
 }
 
 // export interface ComplexGoogleTimelineData {
