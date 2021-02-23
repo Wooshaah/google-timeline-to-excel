@@ -1,0 +1,9 @@
+<app-body *ngIf="uploaded && !!uploadedFile">{{ uploadedFile.name }}</app-body>
+<button
+  mat-raised-button
+  ngxFilePicker
+  [readMode]="readMode"
+  (filePick)="filePick($event)"
+  (readStart)="readStart($event)"
+  (readEnd)="readEnd($event)"
+>{{ 'common.choose_file' | translate }}</button>

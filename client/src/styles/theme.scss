@@ -1,0 +1,29 @@
+@import "~@angular/material/theming";
+
+@import "../app/shared/components/page-header/page-header.component.theme.scss";
+
+// Define your application's custom theme.
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+
+$theme: mat-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+$typography: mat-typography-config(
+  $font-family: "Roboto, Avenir, monospace",
+);
+
+// Include theme styles for Angular Material components.
+@include mat-core($typography);
+@include angular-material-theme($theme);
+
+// Include theme styles for your custom components.
+@include page-header-theme($theme);

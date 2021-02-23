@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+@mixin page-header-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .page-header {
+    background-color: mat-color($primary);
+    color: white;
+  }
+} ;

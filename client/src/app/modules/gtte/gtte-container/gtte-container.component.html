@@ -1,0 +1,79 @@
+<app-page-header>{{ 'gtte.page_title' | translate }}</app-page-header>
+<app-page>
+  <mat-vertical-stepper
+    class="w-100 background-color"
+    [linear]="true"
+    (selectionChange)="activeStepChange($event)"
+  >
+    <mat-step [stepControl]="fileForm">
+      <ng-template matStepLabel>{{ 'gtte.upload_file' | translate }}</ng-template>
+      <div class="col">
+        <app-file-upload (fileUploaded)="handleFileUploaded($event)"></app-file-upload>
+        <div class='p-t-1'>
+          <button
+            mat-raised-button
+            matStepperNext
+            color="primary"
+            [disabled]="fileForm.invalid"
+          >{{ 'common.next' | translate }}</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="dateRangeForm">
+      <ng-template matStepLabel>{{ 'gtte.select_date_range' | translate }}</ng-template>
+      <form
+        class="col"
+        [formGroup]="dateRangeForm"
+      >
+        <mat-form-field class="form-field">
+          <mat-label>{{ 'gtte.date_range' | translate }}</mat-label>
+          <mat-date-range-input
+            [formGroup]="dateRangeForm"
+            [rangePicker]="picker"
+          >
+            <input
+              matStartDate
+              formControlName="startDate"
+              [placeholder]="'gtte.start_date' | translate"
+            >
+            <input
+              matEndDate
+              formControlName="endDate"
+              [placeholder]="'gtte.end_date' | translate"
+            >
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </form>
+      <div class="row">
+        <button
+          mat-raised-button
+          matStepperPrevious
+          class="m-r-1"
+        >{{ 'common.previous' | translate }}</button>
+        <button
+          mat-raised-button
+          matStepperNext
+          color="primary"
+          [disabled]="dateRangeForm.invalid"
+        >{{ 'common.next' | translate }}</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>{{ 'gtte.download_file' | translate }}</ng-template>
+      <mat-spinner
+        *ngIf="busy"
+        class="p-t-1"
+      ></mat-spinner>
+      <button
+        mat-raised-button
+        matStepperPrevious
+        [disabled]="busy"
+      >{{ 'common.previous' | translate }}</button>
+    </mat-step>
+  </mat-vertical-stepper>
+</app-page>
