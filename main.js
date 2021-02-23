@@ -14,19 +14,21 @@ function createWindow() {
   });
 
   mainWindow.loadURL(
-    // url.format({
-    //   pathname: path.join(__dirname, `/dist/index.html`),
-    //   protocol: "file:",
-    //   slashes: true
-    // })
     url.format({
-      pathname: 'localhost:4200',
-      protocol: 'http:',
+      pathname: path.join(__dirname, `/client/dist/client/index.html`),
+      protocol: 'file:',
       slashes: true,
     })
+    // url.format({
+    //   pathname: 'localhost:4200',
+    //   protocol: 'http:',
+    //   slashes: true,
+    // })
   );
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
+  mainWindow.maximize();
+  mainWindow.removeMenu();
 
   mainWindow.on('closed', function () {
     mainWindow = null;

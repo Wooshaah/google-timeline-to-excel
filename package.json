@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:electron": "electron ."
+    "start:electron": "electron .",
+    "compile": "electron-packager . client --platform=win32 --arch=x64 --overwrite"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/Wooshaah/google-timeline-to-excel#readme",
   "devDependencies": {
-    "electron": "^11.3.0"
+    "electron": "^11.3.0",
+    "electron-packager": "^15.2.0"
   }
 }
