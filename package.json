@@ -1,0 +1,29 @@
+{
+  "name": "google-timeline-to-excel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "start:electron": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wooshaah/google-timeline-to-excel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wooshaah/google-timeline-to-excel/issues"
+  },
+  "homepage": "https://github.com/Wooshaah/google-timeline-to-excel#readme",
+  "devDependencies": {
+    "electron": "^11.3.0"
+  }
+}
