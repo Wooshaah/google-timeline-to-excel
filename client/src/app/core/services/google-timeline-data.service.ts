@@ -14,19 +14,17 @@ export class GoogleTimelineDataService {
   constructor() {}
 
   async readFile(sourceFile: File): Promise<GoogleTimelineData> {
-    return new Promise((resolve, reject) => {
-      try {
-        const fileReader = new FileReader();
-
-        fileReader.onload = () => {
-          resolve(JSON.parse(fileReader.result as string));
-        };
-
-        fileReader.readAsText(sourceFile);
-      } catch (error) {
-        reject(error);
-      }
-    });
+    let data: GoogleTimelineData = {
+      locations: [],
+    };
+    try {
+      const content = await sourceFile.text();
+      data = JSON.parse(content);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      return data;
+    }
   }
 
   async parseGoogleTimelineData(
@@ -61,8 +59,6 @@ export class GoogleTimelineDataService {
     const filteredData: ParsedGoogleTimelineData = {
       locations: [],
     };
-
-    console.log(data.locations.find((loc) => loc));
 
     const startDateMs = startDate.valueOf();
     const endDateMs = endDate.valueOf();
